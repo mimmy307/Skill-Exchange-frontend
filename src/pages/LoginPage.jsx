@@ -27,7 +27,7 @@ function LoginPage(props){
             console.log ("successfully logged in", data);
             localStorage.setItem("authToken", data.authToken)
             await authenticateUser();
-            nav("/profile"); //not sure if homepage  or profile
+            nav("/dashboard"); //not sure if homepage  or profile
         } catch(error){
             console.log(error)
         }

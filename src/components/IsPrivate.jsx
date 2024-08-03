@@ -3,9 +3,9 @@ import { AuthContext } from "../context/auth.context";
 import { Navigate } from "react-router-dom";
 
 function IsPrivate({children}){
-    const {isLoggedIn, isLoeading} = useContext(AuthContext)
+    const {isLoggedIn, isLoading} = useContext(AuthContext)
 
-    if(isLoeading){
+    if(isLoading){
         return <p>Loading...</p> // customise later
     }
 

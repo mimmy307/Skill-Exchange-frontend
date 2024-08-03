@@ -62,7 +62,7 @@ function SignupPage(props){
                 <button type="submit">Sign Up</button>
 
             </form>
-            <p>Already have an account? <Link to={"/login"}>login</Link></p>
+            <p>Already have an account? <Link to={"/login"}>Login</Link></p>
         </div>
     )
 
