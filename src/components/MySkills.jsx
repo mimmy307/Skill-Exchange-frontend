@@ -17,9 +17,6 @@ function MySkills(){
         })
         .catch((err) => console.log(err)) 
 
-        // const token = localStorage.getItem("authToken")
-        // axios.get("http://localhost:5005/api/skills/user/" + user._id, {headers: {Authorization: `Bearer ${token}`}})
-        // .then(response => console.log(response.data)).catch(err=>console.log(err))
     }, [])
 
 
@@ -27,11 +24,13 @@ function MySkills(){
         <div className="my-skills-container">
         <h2>My Skills</h2>
             {mySkills &&
-                mySkills.map((skills) =>(
-                    <div key={skills._id} className="my-skill-card">
-                        <p>{skills.skillName}</p>
-                        <img src={skills.image} alt= {skills.skillName}/>
-                    </div>
+                mySkills.map((skill) =>(
+                    <Link to={`/skills/${skill._id}`} key={skill._id}>
+                        <div  className="my-skill-card">
+                            <p>{skill.skillName}</p>
+                            <img src={skill.image} alt= {skill.skillName}/>
+                        </div>
+                    </Link>
 
                 ))
             }
