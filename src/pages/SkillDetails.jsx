@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import { AuthContext } from "../context/auth.context"
+import { Link } from "react-router-dom"
 
 const API_URL = "http://localhost:5005"
 
@@ -14,7 +15,6 @@ function SkillDetails(){
     const getSkill = async () =>{
         try{
             const response = await axios.get (`${API_URL}/api/skills/${skillId}`)
-            console.log('Skill data:', response.data);
             setSkill(response.data)
         } catch(err){
             console.log("couldn't load skill details", err)
@@ -61,10 +61,10 @@ function SkillDetails(){
                 </div>
 
                 <div className="skill-user-info">
-                    {/* <img src={skill.user.profilePic} />
-                    <h4>{skill.user.fullName}</h4>
-                    <p>{skill.user.city}, {skill.user.country}</p>
-                    <p>View Profile</p> */}
+                    <img src={skill.user && skill.user.profilePic} />
+                    <h4>{skill.user && skill.user.fullName}</h4>
+                    <p>{skill.user && skill.user.city}, {skill.user && skill.user.country}</p>
+                    {skill.user && <Link to={`/users/${skill.user._id}`}> <p>View Profile</p></Link> }
                 </div>
 
             </div>

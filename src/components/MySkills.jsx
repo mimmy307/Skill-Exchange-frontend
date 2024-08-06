@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react"
 import service from "../services/file-upload.service"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
-import axios from "axios"
 
 
 
@@ -21,8 +20,7 @@ function MySkills(){
 
 
     return(
-        <div className="my-skills-container">
-        <h2>My Skills</h2>
+        <div>
             {mySkills &&
                 mySkills.map((skill) =>(
                     <Link to={`/skills/${skill._id}`} key={skill._id}>

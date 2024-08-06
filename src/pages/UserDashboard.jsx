@@ -33,6 +33,7 @@ function UserDashboard (){
                 </div>
                 <Link to="/dashboard/editprofile"><button>Edit Profile</button></Link>
                 <div className="my-skills">
+                    <h2>My Skills</h2>
                     <MySkills/>
 
                 </div>

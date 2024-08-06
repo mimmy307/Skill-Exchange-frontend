@@ -10,6 +10,7 @@ function EditProfile(){
     const [email, setEmail] = useState("")
     const [city, setCity] = useState("")
     const [country, setCountry] = useState("")
+    const [aboutMe, setAboutMe] = useState("")
     const [profilePic, setProfilePic] = useState("")
 
     const navigate = useNavigate()
@@ -22,6 +23,7 @@ function EditProfile(){
         setEmail(response.data.email || "");
         setCity(response.data.city || "");
         setCountry(response.data.country || "");
+        setAboutMe(response.data.aboutMe || "");
         setProfilePic(response.data.profilePic || "")   
         }) 
         
@@ -45,7 +47,7 @@ function EditProfile(){
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        const updatedUser ={fullName, email, city, country, profilePic}
+        const updatedUser ={fullName, email, city, country, aboutMe, profilePic}
 
         const tokenFromStorage = localStorage.getItem("authToken")
 
@@ -95,6 +97,15 @@ function EditProfile(){
                         name="country"
                         value={country}
                         onChange={(e)=> setCountry(e.target.value)}
+                     />
+                </div>
+                <div>
+                    <label>About Me</label>
+                    <input
+                        type="text"
+                        name="aboutMe"
+                        value={aboutMe}
+                        onChange={(e)=> setAboutMe(e.target.value)}
                      />
                 </div>
                 <div>
