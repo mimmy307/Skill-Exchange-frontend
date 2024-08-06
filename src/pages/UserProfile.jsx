@@ -3,23 +3,25 @@ import { AuthContext } from "../context/auth.context"
 import service from "../services/file-upload.service"
 import MySkills from "../components/MySkills";
 import Reviews from "../components/Reviews";
+import { useParams } from "react-router-dom";
 
 
 function UserProfile(){
     const [userProfile, setUserProfile] = useState({})
     const {user} = useContext(AuthContext)
+    const {userId} = useParams()
    
-
+    const fetchUserId = userId || user._id
 
     useEffect(() =>{
-        service.getUser(user._id)
+        service.getUser(fetchUserId)
         .then((data)=>{
             setUserProfile(data)
             
         })
         .catch((err) => console.log(err))
 
-    }, []);
+    }, [fetchUserId]);
 
 
     return(
@@ -45,7 +47,7 @@ function UserProfile(){
 
                     <div className="user-reviews-container">
                         <h2>Reviews</h2>   
-                        <Reviews/>
+                        <Reviews revieweeId={userProfile._id}/>
                     </div>
 
                 </div>

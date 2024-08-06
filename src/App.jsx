@@ -11,6 +11,7 @@ import EditProfile from './components/EditProfile';
 import AddSkills from './components/AddSkills';
 import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';
+import AddReview from './components/AddReview';
 
 
 function App() {

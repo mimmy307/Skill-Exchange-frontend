@@ -35,6 +35,7 @@ function UserDashboard (){
                 <div className="my-skills">
                     <h2>My Skills</h2>
                     <MySkills/>
+                    <Link to="/dashboard/addskill"><button>Add Skill</button></Link>
 
                 </div>
   

@@ -32,7 +32,6 @@ function MySkills(){
 
                 ))
             }
-        <Link to="/dashboard/addskill"><button>Add Skill</button></Link>
 
         </div>
     )

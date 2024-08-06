@@ -2,17 +2,19 @@ import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import { AuthContext } from "../context/auth.context"
 import "../components/Reviews.css"
+import AddReview from "./AddReview"
 
 const API_URL = "http://localhost:5005"
 
-function Reviews(){
+function Reviews({revieweeId}){
     const [reviews, setReviews] = useState([])
     const {user} = useContext(AuthContext)
+    const [showReviewForm, setShowReviewForm] = useState(false);
 
     const getReviews = async ()=>{
         const tokenFromStorage = localStorage.getItem("authToken")
         try{
-            const response = await axios.get(`${API_URL}/api/reviews/user/${user._id}`,  {headers: {Authorization: `Bearer ${tokenFromStorage}`}})
+            const response = await axios.get(`${API_URL}/api/reviews/user/${revieweeId}`,  {headers: {Authorization: `Bearer ${tokenFromStorage}`}})
             setReviews(response.data)
         } catch(err){
             console.log("couln't retrieve reviews", err)
@@ -21,7 +23,7 @@ function Reviews(){
 
     useEffect(() =>{
         getReviews();
-    }, [])
+    }, [revieweeId])
 
     const ratingStars = (rating) => {
         const stars = [];
@@ -44,16 +46,22 @@ function Reviews(){
                             <img src={review.reviewer.profilePic} alt="reviewer image"/>
                             <p>{review.reviewer.fullName}</p>
                         </div>
-                        <div>
+                        <div className="review-text">
                             <div className="rating-star">
                             {ratingStars(review.rating)} 
-                            </div>               
+                            </div> 
+                            <p>{review.comment}</p>              
                         </div>
-
+                        
                     </div>
 
                         })
             }
+
+            <button onClick={() => setShowReviewForm(!showReviewForm)}>
+            {showReviewForm ? "Cancel" : "Leave a review"}
+            </button>
+            {showReviewForm && <AddReview revieweeId={revieweeId} />}
         </div>
     )
 

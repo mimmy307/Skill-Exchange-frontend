@@ -12,6 +12,7 @@ function EditProfile(){
     const [country, setCountry] = useState("")
     const [aboutMe, setAboutMe] = useState("")
     const [profilePic, setProfilePic] = useState("")
+    const [isloading, setIsLoading] = useState(false)
 
     const navigate = useNavigate()
 
@@ -30,6 +31,7 @@ function EditProfile(){
     }, [user]);
 
     const handleFileUpload = async (e) =>{
+        setIsLoading(true)
 
         const uploadData= new FormData();
         uploadData.append("image", e.target.files[0]);
@@ -41,6 +43,7 @@ function EditProfile(){
         try{
             const response = await service.uploadImage(uploadData);
             setProfilePic(response.fileUrl)
+            setIsLoading(false)
         }catch(err){console.log("error while uploading file:", err)}
     };
 
@@ -117,7 +120,7 @@ function EditProfile(){
                         onChange={handleFileUpload}
                      />
                 </div>
-                <button type="submit">Save Changes</button>
+                <button disabled={isloading} type="submit">Save Changes</button>
 
             </form>
 
