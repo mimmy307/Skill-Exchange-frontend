@@ -1,0 +1,35 @@
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.status-pending {
+    color: orange;
+}
+
+.status-accepted {
+    color: green;
+}
+
+.status-completed {
+    color: blue;
+}
+
+.status-rejected {
+    color: red;
+}
+
+

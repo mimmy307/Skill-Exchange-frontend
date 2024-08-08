@@ -3,6 +3,10 @@ import service from "../services/file-upload.service"
 import { AuthContext } from "../context/auth.context";
 import { Link } from "react-router-dom";
 import MySkills from "../components/MySkills";
+import { Tabs, Tab } from "react-bootstrap";
+import OutgoingRequests from "../components/OutgoingRequests";
+import IncomingRequests from "../components/IncomingRequests";
+
 
 
 function UserDashboard (){
@@ -32,6 +36,22 @@ function UserDashboard (){
                     <p>Token Balance: {dashUser.tokenBalance}</p>
                 </div>
                 <Link to="/dashboard/editprofile"><button>Edit Profile</button></Link>
+                
+                <Tabs 
+                    defaultActiveKey="Skill Request Sent" 
+                    id="requests-container"
+                    className="requests-container"
+                    justify
+                >
+                    <Tab eventKey="Skill Request Sent" title="Skill Request Sent">
+                        <OutgoingRequests/>
+                    </Tab>
+                    <Tab eventKey="Skill Request Received" title="Skill Request Received">
+                        <IncomingRequests/>
+                    </Tab>
+
+                </Tabs>
+                
                 <div className="my-skills">
                     <h2>My Skills</h2>
                     <MySkills/>

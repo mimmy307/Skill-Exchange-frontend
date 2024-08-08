@@ -7,7 +7,7 @@ function Navbar(){
     return(
         <nav className="navbar">
             <img src="" alt="logo"></img>
-            <p></p>
+            <p>SkillEx</p>
 
             {!isLoggedIn && (
                 <div>
@@ -17,7 +17,11 @@ function Navbar(){
             )}
             
             {isLoggedIn && (
-                <p>Profile</p>
+                <div> 
+                    <Link to="/skills"><p>All Skills</p></Link>
+                    <p>Profile</p>
+                </div>
+               
             )}
 
         </nav>

@@ -11,7 +11,8 @@ import EditProfile from './components/EditProfile';
 import AddSkills from './components/AddSkills';
 import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';
-import AddReview from './components/AddReview';
+import AllSkills from './pages/AllSkills';
+
 
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
       <Route path="/dashboard/editprofile" element={<IsPrivate> <EditProfile/> </IsPrivate>  }/>
       <Route path="/dashboard/addskill" element={ <IsPrivate> <AddSkills/> </IsPrivate> } />
       <Route path="/skills/:skillId" element={ <IsPrivate> <SkillDetails/> </IsPrivate> } />
-      <Route path="users/:userId" element={<IsPrivate><UserProfile/></IsPrivate>} />
+      <Route path="/users/:userId" element={<IsPrivate><UserProfile/></IsPrivate>} />
+      <Route path="/skills" element={<IsPrivate><AllSkills/></IsPrivate>} />
       <Route path="/signup" element={ <IsAnon> <SignupPage/> </IsAnon> }/>
       <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />
 
