@@ -1,0 +1,20 @@
+.navbar{
+    background-color: black;
+}
+
+.logo{
+    width: 100px;
+    margin: 10px;
+}
+
+.login-signup-section{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.signup-button{
+    color: black;
+}
+

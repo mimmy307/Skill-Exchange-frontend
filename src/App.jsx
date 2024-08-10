@@ -12,6 +12,7 @@ import AddSkills from './components/AddSkills';
 import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';
 import AllSkills from './pages/AllSkills';
+import { MantineProvider } from '@mantine/core';
 
 
 
@@ -19,6 +20,7 @@ function App() {
   
 
   return (
+    <MantineProvider>
     <div className='App'>
     <Navbar />
 
@@ -32,10 +34,11 @@ function App() {
       <Route path="/skills" element={<IsPrivate><AllSkills/></IsPrivate>} />
       <Route path="/signup" element={ <IsAnon> <SignupPage/> </IsAnon> }/>
       <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />
-
-    </Routes>
+   </Routes>
 
     </div>
+    </MantineProvider>
+    
   )
 }
 
