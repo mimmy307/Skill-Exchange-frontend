@@ -1,0 +1,45 @@
+.navbar{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.logo{
+    width: 150px;
+    margin: 10px;
+}
+
+.loginSignupSection{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.skillsProfileContainer{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+
+.user {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-dark-0));
+    padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
+    border-radius: var(--mantine-radius-sm);
+    transition: background-color 100ms ease;
+  
+    &:hover {
+      background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+    }
+  
+    @media (max-width: $mantine-breakpoint-xs) {
+      display: none;
+    }
+  }
+  
+  .userActive {
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+  }

@@ -12,15 +12,33 @@ import AddSkills from './components/AddSkills';
 import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';
 import AllSkills from './pages/AllSkills';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme} from '@mantine/core';
 
+const myColor= [
+  '#e2fff7',
+  '#cdfff0',
+  '#9cffdf',
+  '#67ffcd',
+  '#40febf',
+  '#29ffb5',
+  '#18ffb0',
+  '#00e39a',
+  '#00c987',
+  '#00ae72'
+];
+
+const theme = createTheme({
+  colors: {
+    myColor,
+  }
+});
 
 
 function App() {
   
 
   return (
-    <MantineProvider>
+    <MantineProvider theme={theme}>
     <div className='App'>
     <Navbar />
 
