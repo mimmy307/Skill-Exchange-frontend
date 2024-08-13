@@ -2,7 +2,7 @@ import { SimpleGrid, Card, Image, Text, Container } from '@mantine/core';
 import home from "../assets/Images/Categories/11.png"
 import creative from "../assets/Images/Categories/33.png"
 import tech from "../assets/Images/Categories/22.png"
-import classes from "./CategorySection.module.css"
+import classes from "../components/CategorySection.module.css"
 
 const categories =[
     {
@@ -28,7 +28,7 @@ function CategorySection(){
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="xl" > 
             {categories.map((category)=>{
                 return(
-                    <Card shadow="sm" padding="lg" radius="lg" withBorder>
+                    <Card key={category.title} shadow="sm" padding="lg" radius="lg" withBorder>
                         <Card.Section>
                             <Image 
                                 src={category.image}
