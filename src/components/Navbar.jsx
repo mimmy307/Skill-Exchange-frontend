@@ -69,7 +69,7 @@ function Navbar(){
                             </UnstyledButton>
                         </Menu.Target>
                         <Menu.Dropdown>
-                            <Link to="/users/:userId">
+                            <Link to={`/users/${user._id}`}>
                             <Menu.Item
                                 leftSection={
                                     <IconUserCircle 
@@ -82,7 +82,8 @@ function Navbar(){
                             My Profile
                             </Menu.Item>
                             </Link>
-                            <Menu.Item
+                            <Link to={`/dashboard`}>
+                              <Menu.Item
                                 leftSection={
                                     <IconLayoutDashboard 
                                         style={{ width: rem(16), height: rem(16) }}
@@ -92,7 +93,9 @@ function Navbar(){
                                 }
                             >
                             Personal Dashboard
-                            </Menu.Item>
+                            </Menu.Item>  
+                            </Link>
+                            
                             <Menu.Divider />
                             <Menu.Item
                                 leftSection={
