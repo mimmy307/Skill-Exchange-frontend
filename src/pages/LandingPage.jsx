@@ -1,10 +1,15 @@
+import CategorySection from "../components/CategorySection"
 import Header from "../components/Header"
 
 
 
 function LandingPage(){
     return(
-       <Header />
+        <div>
+            <Header />
+            <CategorySection/>
+       </div>
+       
     )
 }
 
