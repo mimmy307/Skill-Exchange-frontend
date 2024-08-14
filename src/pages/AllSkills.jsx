@@ -19,7 +19,7 @@ function AllSkills(){
             console.log("couldn't fetch skills", err)
         }
     }
-    
+
     useEffect(()=>{
         getAllSkills()
     }, [])

@@ -1,11 +1,20 @@
 .container{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 50px;
+    gap: 50px;
+}
+
+.userInfo{
+    width: 300px;
+    text-align: center;
 }
 
 .dashboardInfo{
     display: flex;
     flex-direction: column;
+    gap: 20px;
 
 }
+

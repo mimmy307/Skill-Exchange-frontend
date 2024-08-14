@@ -29,11 +29,11 @@ function UserDashboard (){
 
     return(
         <div className={classes.container}>
-
-                <Paper radius="md" withBorder p="lg" bg="var(--mantine-color-body)" className={classes.userInfo}>
+            <div>
+            <Paper radius="md" withBorder p="lg" bg="var(--mantine-color-body)" className={classes.userInfo}>
                     <Avatar
                         src={dashUser.profilePic}
-                        size={120}
+                        size={180}
                         radius={120}
                         mx="auto"
                     />
@@ -46,21 +46,30 @@ function UserDashboard (){
                     <Text ta="center" c="dimmed" fz="sm">
                         {dashUser.city}, {dashUser.country}
                     </Text>
-                    <Group>
-                        <Text ta="center" c="dimmed" fz="sm">
+                    <Group  justify="center" mt="md">
+                        <Text c="dimmed" fz="sm">
                             Token Balance:
                         </Text>
-                        <Badge variant="light" color="blue" size="lg" circle>
+                        <Badge variant="light" color="teal" size="lg" circle>
                         {dashUser.tokenBalance} 
                         </Badge>
                     </Group>
                    
-                    <Link to="/dashboard/editprofile">
-                        <Button variant="default" fullWidth mt="md">
+                    <Link to="/dashboard/editprofile" style={{ textDecoration: 'none' }}>
+                        <Button 
+                        variant="filled" 
+                        color="#00E59B"
+                        style={{ color: 'black' }} 
+                        fullWidth 
+                        mt="md"
+                        radius="md" >
                             Edit Profile
                         </Button>
                     </Link>   
-                </Paper>
+                </Paper> 
+            </div>
+
+               
                 
                 <div className={classes.dashboardInfo}>
                    <Tabs 
@@ -86,11 +95,25 @@ function UserDashboard (){
                         </Tabs.Panel>
                     </Tabs>
                 
-                    <div className="my-skills">
-                        <h2>My Skills</h2>
-                        <MySkills/>
-                        <Link to="/dashboard/addskill"><button>Add Skill</button></Link>
+                    <div className={classes.mySkills}>
+                        <Group justify="space-between">
+                           <h2>My Skills</h2>
+                        <Link to="/dashboard/addskill">
+                            <Button 
+                                variant="filled" 
+                                color="#00E59B" 
+                                size="sm" 
+                                radius="md"  
+                                style={{ color: 'black' }}>
+                                Add Skill
+                            </Button>
+                        </Link> 
+                        </Group>
+                        
 
+                        <hr style={{ border: '1.5px solid #00E59B'}}/> 
+                        <MySkills/>
+                    
                     </div> 
                 </div>
             

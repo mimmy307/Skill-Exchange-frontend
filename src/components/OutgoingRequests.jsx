@@ -28,7 +28,7 @@ function OutgoingRequests(){
     return(
         <div>
             {requests.length === 0 ? (
-                <p>No incoming requests</p>
+                <p>No outgoing requests</p>
             ) : (
                 requests.map(request => (
                     <Card key={request._id} >
