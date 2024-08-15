@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import service from "../services/file-upload.service"
 import { AuthContext } from "../context/auth.context";
-import { Link } from "react-router-dom";
 import MySkills from "../components/MySkills";
 import OutgoingRequests from "../components/OutgoingRequests";
 import IncomingRequests from "../components/IncomingRequests";
@@ -16,7 +15,6 @@ import AddSkills from "../components/AddSkills";
 
 function UserDashboard (){
     const [dashUser, setDashUser] = useState({})
-    const [opened, { open, close }] = useDisclosure(false)
     const [editProfileOpened, { open: openEditProfile, close: closeEditProfile }] = useDisclosure(false);
     const [addSkillOpened, { open: openAddSkill, close: closeAddSkill }] = useDisclosure(false);
 

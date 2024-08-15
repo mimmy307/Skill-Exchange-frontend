@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import { AuthContext } from "../context/auth.context"
 import { Link } from "react-router-dom"
-
-const API_URL = "http://localhost:5005"
+import { API_URL } from "../config"
 
 function SkillDetails(){
     const {skillId} = useParams()

@@ -3,8 +3,7 @@ import { AuthContext } from "../context/auth.context"
 import axios from "axios"
 import Card from 'react-bootstrap/Card';
 import "../components/Requests.css"
-
-const API_URL = 'http://localhost:5005';
+import { API_URL } from "../config";
 
 function OutgoingRequests(){
     const {user} = useContext(AuthContext)

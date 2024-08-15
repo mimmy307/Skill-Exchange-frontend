@@ -7,7 +7,6 @@ import IsPrivate from "./components/IsPrivate"
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import UserDashboard from './pages/UserDashboard';
-import EditProfile from './components/EditProfile';
 import AddSkills from './components/AddSkills';
 import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';

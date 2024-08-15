@@ -6,8 +6,7 @@ import { SimpleGrid, Card, Image, Text, Modal, Group, Button } from "@mantine/co
 import { useDisclosure } from "@mantine/hooks"
 import axios from "axios"
 import AddSkills from "./AddSkills"
-
-const API_URL = "http://localhost:5005"
+import { API_URL } from "../config"
 
 function MySkills(){
     const [mySkills, setMySkills] = useState([])

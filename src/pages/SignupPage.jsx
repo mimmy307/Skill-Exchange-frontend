@@ -11,8 +11,8 @@ import {
     Container,
     Button,
   } from '@mantine/core';
+  import { API_URL } from "../config";
 
-const API_URL = "http://localhost:5005";
 
 function SignupPage(props){
     const [fullName, setFullName] = useState("");
@@ -41,39 +41,6 @@ function SignupPage(props){
     };
 
     return(
-        // <div className="signup-page">
-        //     <h1>Sign Up</h1>
-
-        //     <form onSubmit={handleSignup}>
-        //         <label>Full Name:</label>
-        //         <input 
-        //             type="text"
-        //             name = "fullName"
-        //             value={fullName}
-        //             onChange={handleFullName}
-        //         />
-
-        //         <label>Email:</label>
-        //         <input
-        //             type="email"
-        //             name = "email"
-        //             value={email}
-        //             onChange={handleEmail}
-        //         />
-
-        //         <label>Password</label>
-        //         <input 
-        //             type="password"
-        //             name = "password"
-        //             value={password}
-        //             onChange={handlePassword}
-        //         />
-
-        //         <button type="submit">Sign Up</button>
-
-        //     </form>
-        //     <p>Already have an account? <Link to={"/login"}>Login</Link></p>
-        // </div>
 
         <Container size={420} my={40}>
             <Title align="center" mt={100} fw={900}>

@@ -1,8 +1,8 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../context/auth.context"
 import axios from "axios"
+import { API_URL } from "../config"
 
-const API_URL = "http://localhost:5005"
 
 function AddReview({revieweeId}){
     const [rating, setRating] = useState(0)

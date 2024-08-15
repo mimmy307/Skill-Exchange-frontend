@@ -3,8 +3,7 @@ import { AuthContext } from "../context/auth.context"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
-
-const API_URL = "http://localhost:5005"
+import { API_URL } from "../config"
 
 function AllSkills(){
     const [skills, setSkills] = useState([])

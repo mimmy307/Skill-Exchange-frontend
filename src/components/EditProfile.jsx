@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import service from "../services/file-upload.service";
 import axios from "axios";
 import { Center, Group, Input, Stack, Textarea, Button} from "@mantine/core";
+import { API_URL } from "../config";
 
 function EditProfile({closeModal}){
     const {user} = useContext(AuthContext)
@@ -16,7 +17,7 @@ function EditProfile({closeModal}){
 
     useEffect(()=>{
         const tokenFromStorage = localStorage.getItem("authToken")
-        axios.get(`http://localhost:5005/api/users/${user._id}`,{headers: {Authorization: `Bearer ${tokenFromStorage}`}} )
+        axios.get(`${API_URL}/api/users/${user._id}`,{headers: {Authorization: `Bearer ${tokenFromStorage}`}} )
         .then((response)=>{
         setFullName(response.data.fullName || "");
         setEmail(response.data.email || "");
@@ -53,7 +54,7 @@ function EditProfile({closeModal}){
         const tokenFromStorage = localStorage.getItem("authToken")
 
         try{
-            const response = await axios.put(`http://localhost:5005/api/users/${user._id}`, updatedUser,{
+            const response = await axios.put(`${API_URL}/api/users/${user._id}`, updatedUser,{
                 headers: { Authorization: `Bearer ${tokenFromStorage}` } 
             })
             closeModal();

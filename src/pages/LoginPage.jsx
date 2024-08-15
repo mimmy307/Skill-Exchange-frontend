@@ -14,8 +14,7 @@ import {
   Container,
   Button,
 } from '@mantine/core';
-
-const API_URL = "http://localhost:5005";
+import { API_URL } from "../config";
 
 function LoginPage() {
     const [email, setEmail] = useState("");

@@ -3,8 +3,7 @@ import axios from "axios"
 import { AuthContext } from "../context/auth.context"
 import "../components/Reviews.css"
 import AddReview from "./AddReview"
-
-const API_URL = "http://localhost:5005"
+import { API_URL } from "../config"
 
 function Reviews({revieweeId}){
     const [reviews, setReviews] = useState([])
