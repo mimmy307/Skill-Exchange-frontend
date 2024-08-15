@@ -1,9 +1,15 @@
+
 .container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 50px;
+    margin: 30px;
+    padding: 30px;
+    border-radius:20px;
     gap: 50px;
+    /* background-color: rgba(218, 240, 236, 0.472); */
+    background-color: rgba(225, 235, 233, 0.948);
+    /* background: linear-gradient(rgb(230, 248, 244),rgb(166, 214, 211)); */
 }
 
 .userInfo{
@@ -15,6 +21,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: white;
+    border: 1px rgb(222, 220, 220) solid;
+    padding: 30px;
+    border-radius: 10px;
 
 }
 

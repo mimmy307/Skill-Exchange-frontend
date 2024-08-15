@@ -8,20 +8,12 @@ import axios from "axios"
 import AddSkills from "./AddSkills"
 import { API_URL } from "../config"
 
-function MySkills(){
-    const [mySkills, setMySkills] = useState([])
+function MySkills({ skills, setSkills }){
     const {user} = useContext(AuthContext)
     const [opened, {open,close}] = useDisclosure(false)
     const [selectedSkill, setSelectedSkill] = useState(null);
 
-    useEffect(()=>{
-        service.getUserSkills(user._id)
-        .then((data) =>{
-            setMySkills(data)
-        })
-        .catch((err) => console.log(err)) 
-
-    }, [])
+  
 
     const handleDelete = async ()=>{
         const tokenFromStorage = localStorage.getItem("authToken")
@@ -31,7 +23,7 @@ function MySkills(){
             await axios.delete(`${API_URL}/api/skills/${selectedSkill}`, 
             {headers: { Authorization: `Bearer ${tokenFromStorage}` } })
             const updatedSkills = await service.getUserSkills(user._id);
-            setMySkills(updatedSkills);
+            setSkills(updatedSkills);
             close();
         }catch(error){
            console.log("couldn't delete skill", error) 
@@ -43,8 +35,8 @@ function MySkills(){
         <>
 
             <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg" > 
-                {mySkills &&
-                    mySkills.map((skill)=>{
+                {skills &&
+                    skills.map((skill)=>{
                     return(
                             <Card key={skill._id} shadow="md" padding="md" radius="lg" withBorder>
                             <Card.Section style={{ position: 'relative' }}>
@@ -99,7 +91,7 @@ function MySkills(){
                         variant="filled" 
                         color="red" 
                         size="sm" 
-                        adius="md">
+                        radius="md">
                         Delete
                     </Button>
                 </Group>

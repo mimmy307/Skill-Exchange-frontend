@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth.context"
 import service from "../services/file-upload.service";
 import { NumberInput, Select, Stack, TextInput, Textarea, Input, Button, Center } from "@mantine/core";
 
-function AddSkills({closeModal}){
+function AddSkills({closeModal, setSkills}){
     const [image, setImage] = useState("")
     const [skillName, setSkillName] = useState("")
     const [description, setDescription] = useState("")
@@ -40,7 +40,9 @@ function AddSkills({closeModal}){
         }
 
         try{
-            const skillResponse = await service.createSkill(newSkill);
+            await service.createSkill(newSkill);
+            const updatedSkills = await service.getUserSkills(user._id);
+            setSkills(updatedSkills)
             closeModal();
         }
         catch (error) {

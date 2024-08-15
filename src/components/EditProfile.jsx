@@ -5,7 +5,7 @@ import axios from "axios";
 import { Center, Group, Input, Stack, Textarea, Button} from "@mantine/core";
 import { API_URL } from "../config";
 
-function EditProfile({closeModal}){
+function EditProfile({closeModal, setDashUser}){
     const {user} = useContext(AuthContext)
     const [fullName, setFullName] = useState("")
     const [email, setEmail] = useState("")
@@ -57,6 +57,7 @@ function EditProfile({closeModal}){
             const response = await axios.put(`${API_URL}/api/users/${user._id}`, updatedUser,{
                 headers: { Authorization: `Bearer ${tokenFromStorage}` } 
             })
+            setDashUser(response.data);
             closeModal();
         }catch(err){console.log("error while updating profile", err)}
     }

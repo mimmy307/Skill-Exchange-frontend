@@ -15,6 +15,7 @@ import AddSkills from "../components/AddSkills";
 
 function UserDashboard (){
     const [dashUser, setDashUser] = useState({})
+    const [mySkills, setMySkills] = useState([])
     const [editProfileOpened, { open: openEditProfile, close: closeEditProfile }] = useDisclosure(false);
     const [addSkillOpened, { open: openAddSkill, close: closeAddSkill }] = useDisclosure(false);
 
@@ -29,7 +30,16 @@ function UserDashboard (){
         })
         .catch((err) => console.log(err))
 
-    }, []);
+    }, [user._id]);
+
+    useEffect(()=>{
+        service.getUserSkills(user._id)
+        .then((data) =>{
+            setMySkills(data)
+        })
+        .catch((err) => console.log(err)) 
+
+    }, [user._id])
 
     return(
         <div className={classes.container}>
@@ -75,68 +85,68 @@ function UserDashboard (){
 
                
                 
-                <div className={classes.dashboardInfo}>
-                   <Tabs 
-                        defaultValue ="Skill Request Sent" 
-                        className={classes.request}
-                        color='#00E59B'
-                    >
-                        <Tabs.List grow>
-                            <Tabs.Tab value="Skill Request Sent">
-                                Skill Request Sent
-                            </Tabs.Tab>
-                            <Tabs.Tab value="Skill Request Received">
-                                Skill Request Received
-                            </Tabs.Tab>  
-                        </Tabs.List>
+            <div className={classes.dashboardInfo}>
+                <Tabs 
+                    defaultValue ="Skill Request Sent" 
+                    className={classes.request}
+                    color='#00E59B'
+                >
+                    <Tabs.List grow>
+                        <Tabs.Tab value="Skill Request Sent">
+                            Skill Request Sent
+                        </Tabs.Tab>
+                        <Tabs.Tab value="Skill Request Received">
+                            Skill Request Received
+                        </Tabs.Tab>  
+                    </Tabs.List>
 
-                        <Tabs.Panel value="Skill Request Sent">
-                            <OutgoingRequests/>
-                        </Tabs.Panel>
+                    <Tabs.Panel value="Skill Request Sent">
+                        <OutgoingRequests/>
+                    </Tabs.Panel>
 
-                        <Tabs.Panel value="Skill Request Received">
-                            <IncomingRequests/>
-                        </Tabs.Panel>
-                    </Tabs>
-                
-                    <div className={classes.mySkills}>
-                        <Group justify="space-between">
-                           <h2>My Skills</h2>
-                            <Button 
-                                variant="filled" 
-                                color="#00E59B" 
-                                size="sm" 
-                                radius="md"  
-                                style={{ color: 'black' }}
-                                onClick={openAddSkill}>
-                                Add Skill
-                            </Button>
-                        </Group>
-                        
-
-                        <hr style={{ border: '1.5px solid #00E59B'}}/> 
-                        <MySkills/>
+                    <Tabs.Panel value="Skill Request Received">
+                        <IncomingRequests/>
+                    </Tabs.Panel>
+                </Tabs>
+            
+                <div className={classes.mySkills}>
+                    <Group justify="space-between">
+                        <h2>My Skills</h2>
+                        <Button 
+                            variant="filled" 
+                            color="#00E59B" 
+                            size="sm" 
+                            radius="md"  
+                            style={{ color: 'black' }}
+                            onClick={openAddSkill}>
+                            Add Skill
+                        </Button>
+                    </Group>
                     
-                    </div> 
-                </div>
 
-                <Modal
-                    opened={editProfileOpened} 
-                    onClose={closeEditProfile} 
-                    withCloseButton={false}
-                    centered
-                    size="lg">
-                        <EditProfile  closeModal={closeEditProfile}/>
-                </Modal>
+                    <hr style={{ border: '1.5px solid #00E59B'}}/> 
+                    <MySkills skills={mySkills} setSkills={setMySkills}/>
+                
+                </div> 
+            </div>
 
-                <Modal
-                    opened={addSkillOpened} 
-                    onClose={closeAddSkill} 
-                    withCloseButton={false}
-                    centered
-                    size="lg">
-                        <AddSkills  closeModal={closeAddSkill}/>
-                </Modal>
+            <Modal
+                opened={editProfileOpened} 
+                onClose={closeEditProfile} 
+                withCloseButton={false}
+                centered
+                size="lg">
+                    <EditProfile  closeModal={closeEditProfile} setDashUser= {setDashUser}/>
+            </Modal>
+
+            <Modal
+                opened={addSkillOpened} 
+                onClose={closeAddSkill} 
+                withCloseButton={false}
+                centered
+                size="lg">
+                    <AddSkills  closeModal={closeAddSkill} setSkills={setMySkills}/>
+            </Modal>
             
         </div>
     )

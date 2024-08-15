@@ -14,6 +14,7 @@ function Reviews({revieweeId}){
         const tokenFromStorage = localStorage.getItem("authToken")
         try{
             const response = await axios.get(`${API_URL}/api/reviews/user/${revieweeId}`,  {headers: {Authorization: `Bearer ${tokenFromStorage}`}})
+            console.log(response.data)
             setReviews(response.data)
         } catch(err){
             console.log("couln't retrieve reviews", err)
@@ -21,7 +22,9 @@ function Reviews({revieweeId}){
     }
 
     useEffect(() =>{
-        getReviews();
+        if (revieweeId) {
+            getReviews();
+        }
     }, [revieweeId])
 
     const ratingStars = (rating) => {
@@ -38,8 +41,8 @@ function Reviews({revieweeId}){
 
     return(
         <div>
-            {reviews &&
-                reviews.map((review)=>{
+            {reviews.length === 0 ? (<p>No reviews available</p>) :(
+                reviews.map((review)=>(
                     <div className="user-review-card" >
                         <div className="reviewer-info">
                             <img src={review.reviewer.profilePic} alt="reviewer image"/>
@@ -54,7 +57,7 @@ function Reviews({revieweeId}){
                         
                     </div>
 
-                        })
+                )))
             }
 
             <button onClick={() => setShowReviewForm(!showReviewForm)}>

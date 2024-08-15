@@ -4,6 +4,7 @@ import axios from "axios"
 import { Row, Col, Card } from 'react-bootstrap';
 import "../components/Requests.css"
 import { API_URL } from "../config";
+import { Avatar, Group, Table, Text, Select } from "@mantine/core";
 
 
 function IncomingRequests(){
@@ -25,54 +26,68 @@ function IncomingRequests(){
         getIncomingRequests()
     }, [user._id])
 
+    const handleStatusChange = async (requestId, newStatus) =>{
+        const tokenFromStorage = localStorage.getItem("authToken")
+        try{ 
+            const response = await axios.put(`${API_URL}/api/skillRequest/${requestId}`,
+                { status: newStatus },
+                { headers: { Authorization: `Bearer ${tokenFromStorage}` } }
+              );
+           getIncomingRequests();
+        }catch (err) {
+            console.log("Couldn't update status", err);
+          }
+    }
+
+    const rows = requests.map((request) =>(
+        <Table.Tr key={request._id}>
+            <Table.Td>
+                <Group gap="sm">
+                    <Avatar size={40} src={request.requester.profilePic } radius={40}/>
+                    <Text fz="sm" fw={500}>
+                        {request.requester.fullName}
+                    </Text>
+                </Group>
+            </Table.Td>
+
+            <Table.Td>
+                <Text fz="sm">{request.skill.skillName}</Text>
+            </Table.Td>
+
+            <Table.Td>
+                <Text fz="sm">{request.tokens}</Text>
+            </Table.Td>
+
+            <Table.Td>
+                <Select
+                data={['Pending', 'Accepted', 'Completed', 'Rejected']}
+                defaultValue={request.status}
+                onChange={(value) => handleStatusChange(request._id, value)}
+                />
+            </Table.Td>
+
+        </Table.Tr>
+    ))
+
     return (
-    //     <div>
-    //         <h3>Incoming Requests</h3>
-    //         <Row>
-    //             {requests.length === 0 ? (
-    //                 <p>No incoming requests</p>
-    //             ) : (
-    //                 requests.map(request => (
-    //                     <Col md={4} key={request._id} className="mb-3">
-    //                         <Card>
-    //                             <Card.Body>
-    //                                 <Card.Title>Skill: {request.skill.skillName}</Card.Title>
-    //                                 <Card.Subtitle className="mb-2 text-muted">
-    //                                     From: {request.requester.fullName}
-    //                                 </Card.Subtitle>
-    //                                 <Card.Text>
-    //                                     Tokens: {request.tokens}
-    //                                     <br />
-    //                                     Status: <span className={`status-${request.status}`}>{request.status}</span>
-    //                                 </Card.Text>
-    //                             </Card.Body>
-    //                         </Card>
-    //                     </Col>
-    //                 ))
-    //             )}
-    //         </Row>
-    //     </div>
-    // );
-   
         <div>
             {requests.length === 0 ? (
                 <p>No incoming requests</p>
-            ) : (
-                requests.map(request => (
-                    <Card key={request._id} >
-                        <Card.Body>
-                            <Card.Title>Skill: {request.skill.skillName}</Card.Title>
-                            <Card.Subtitle >
-                                From: {request.requester.fullName}
-                            </Card.Subtitle>
-                            <Card.Text>
-                                Tokens: {request.tokens}
-                                <br />
-                                Status: <span className={`status-${request.status}`}>{request.status}</span>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                ))
+            ) : ( 
+                <Table.ScrollContainer minWidth={800} mt="lg" >
+                    <Table verticalSpacing="md" >
+                        <Table.Thead>
+                        <Table.Tr>
+                            <Table.Th>Requester</Table.Th>
+                            <Table.Th>Skill</Table.Th>
+                            <Table.Th>Token Rate</Table.Th>
+                            <Table.Th>Status</Table.Th>
+                        </Table.Tr>
+                        </Table.Thead>
+                        <Table.Tbody>{rows}</Table.Tbody>
+                    </Table>
+                </Table.ScrollContainer>
+
             )}
         </div>
         
