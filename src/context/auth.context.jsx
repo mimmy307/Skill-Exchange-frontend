@@ -27,6 +27,7 @@ function AuthProviderWrapper({children}){
         }
     };
 
+
     const logOutUser = () =>{
       localStorage.removeItem("authToken")  
       authenticateUser()

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../context/auth.context"
-import { useNavigate } from "react-router-dom"
 import service from "../services/file-upload.service";
+import { NumberInput, Select, Stack, TextInput, Textarea, Input, Button, Center } from "@mantine/core";
 
-function AddSkills(){
+function AddSkills({closeModal}){
     const [image, setImage] = useState("")
     const [skillName, setSkillName] = useState("")
     const [description, setDescription] = useState("")
@@ -13,7 +13,6 @@ function AddSkills(){
 
     const {user} = useContext(AuthContext)
 
-    const navigate = useNavigate();
 
     const handleFileUpload = async (e) =>{
         setIsLoading(true)
@@ -42,7 +41,7 @@ function AddSkills(){
 
         try{
             const skillResponse = await service.createSkill(newSkill);
-            navigate("/dashboard")
+            closeModal();
         }
         catch (error) {
             console.error('Error adding skill:', error);
@@ -50,55 +49,60 @@ function AddSkills(){
     };
 
     return(
-        <div className="add-skill-container">
+        <Stack align="center">
             <h2>Add Skill</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Skill Name</label>
-                    <input 
-                        type="text"
-                        name="skillName"
-                        value= {skillName}
-                        onChange={(e) => setSkillName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Description</label>
-                    <textarea
-                        name="description"
-                        value= {description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Location</label>
-                    <select value={location} onChange={(e)=> setLocation(e.target.value)}> 
-                        <option value="remote">Remote</option>
-                        <option value="in-person">In-Person</option>   
-                    </select>
-                       
-                </div>
-                <div>
-                    <label>Token Rate</label>
-                    <input 
-                        type="number"
-                        name="tokenRate"
-                        value= {tokenRate}
-                        onChange={(e) => setTokenRate(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Image</label>
-                    <input
+            <form onSubmit={handleSubmit} style={{ width: "80%" }}>
+                <TextInput 
+                    label="Skill Name"
+                    value= {skillName}
+                    onChange={(e) => setSkillName(e.target.value)}
+                    mt="md"
+                />
+                <Textarea
+                    label = "Skill Description"
+                    value= {description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    autosize
+                    mt="md"
+                />
+                <Select
+                    mt="md"
+                    label="Location"
+                    value={location} 
+                    onChange={(value)=> setLocation(value)}
+                    data={[
+                    { value: 'remote', label: 'Remote' },
+                    { value: 'in-person', label: 'In-Person' }
+                    ]}
+                />
+                <NumberInput
+                    mt="md"
+                    label="Token Rate"
+                    value= {tokenRate}
+                    onChange={(value) => setTokenRate(value)}
+                />
+                <Input.Wrapper label="Image"  mt="md">
+                        <Input
                         type="file"
-                        name="image"
                         onChange={handleFileUpload}
-                     />
-                </div>
-                <button disabled={isloading} type="submit">Add Skill</button>
+                        />
+                </Input.Wrapper>
+               <Center mt="md">
+                <Button 
+                    disabled={isloading} 
+                    type="submit"
+                    variant="filled" 
+                    color="#00E59B" 
+                    size="sm" 
+                    radius="xl"  >
+                    Add Skill
+                </Button>
+               </Center>
+            
             </form>
 
-        </div>
+        </Stack>
+        
     )
 
 

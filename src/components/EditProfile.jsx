@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import service from "../services/file-upload.service";
 import axios from "axios";
+import { Center, Group, Input, Stack, Textarea, Button} from "@mantine/core";
 
-function EditProfile(){
+function EditProfile({closeModal}){
     const {user} = useContext(AuthContext)
     const [fullName, setFullName] = useState("")
     const [email, setEmail] = useState("")
@@ -13,8 +13,6 @@ function EditProfile(){
     const [aboutMe, setAboutMe] = useState("")
     const [profilePic, setProfilePic] = useState("")
     const [isloading, setIsLoading] = useState(false)
-
-    const navigate = useNavigate()
 
     useEffect(()=>{
         const tokenFromStorage = localStorage.getItem("authToken")
@@ -55,76 +53,81 @@ function EditProfile(){
         const tokenFromStorage = localStorage.getItem("authToken")
 
         try{
-            await axios.put(`http://localhost:5005/api/users/${user._id}`, updatedUser,{
+            const response = await axios.put(`http://localhost:5005/api/users/${user._id}`, updatedUser,{
                 headers: { Authorization: `Bearer ${tokenFromStorage}` } 
             })
-            navigate('/dashboard')
+            closeModal();
         }catch(err){console.log("error while updating profile", err)}
     }
 
     return(
-        <div className="edit-profile-form">
+        <Stack align="center">
             <h2>Edit Profile</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Full Name</label>
-                    <input
-                        type="text"
-                        name="fullName"
-                        value={fullName}
-                        onChange={(e)=> setFullName(e.target.value)}
-                     />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e)=> setEmail(e.target.value)}
-                     />
-                </div>
-                <div>
-                    <label>City</label>
-                    <input
-                        type="text"
-                        name="city"
-                        value={city}
-                        onChange={(e)=> setCity(e.target.value)}
-                     />
-                </div>
-                <div>
-                    <label>Country</label>
-                    <input
-                        type="text"
-                        name="country"
-                        value={country}
-                        onChange={(e)=> setCountry(e.target.value)}
-                     />
-                </div>
-                <div>
-                    <label>About Me</label>
-                    <input
-                        type="text"
-                        name="aboutMe"
+            <form onSubmit={handleSubmit} style={{ width: "80%" }}>
+                <Group spacing="md" grow>
+                    <Input.Wrapper label="Full Name">
+                        <Input 
+                            type="text"
+                            value={fullName}
+                            onChange={(e)=> setFullName(e.target.value)}
+                        />
+                    </Input.Wrapper>
+                    <Input.Wrapper label="Email" >
+                        <Input
+                            type="email"
+                            value={email}
+                            onChange={(e)=> setEmail(e.target.value)}
+                        />
+                    </Input.Wrapper>
+                </Group>
+                <Group grow spacing="md" mt="md">
+                    <Input.Wrapper label="City">
+                        <Input
+                            type="text"
+                            value={city}
+                            onChange={(e)=> setCity(e.target.value)}
+                        />
+                    </Input.Wrapper>
+                    <Input.Wrapper label="Country">
+                        <Input
+                            type="text"
+                            value={country}
+                            onChange={(e)=> setCountry(e.target.value)}
+                        />
+                    </Input.Wrapper>
+                </Group>
+                <Input.Wrapper label="About Me" mt="md">
+                    <Textarea 
                         value={aboutMe}
                         onChange={(e)=> setAboutMe(e.target.value)}
-                     />
-                </div>
-                <div>
-                    <label>Profile Picture</label>
-                    <input
-                        accept="image/jpg, image/png"
+                        placeholder="Tell us about yourself"
+                        autosize
+                    />
+                </Input.Wrapper>
+                <Center mt="md">
+                    <Input.Wrapper label="Profile Picture">
+                        <Input
                         type="file"
-                        name="profilePic"
+                        accept="image/jpg, image/png"
                         onChange={handleFileUpload}
-                     />
-                </div>
-                <button disabled={isloading} type="submit">Save Changes</button>
-
+                        />
+                    </Input.Wrapper>
+                </Center>
+                <Center mt="md">
+                    <Button 
+                        disabled={isloading} 
+                        type="submit"
+                        variant="filled" 
+                        color="#00E59B" 
+                        size="sm" 
+                        radius="xl"  
+                        >
+                        Save Changes
+                    </Button>
+                </Center>
             </form>
+        </Stack>
 
-        </div>
     )
 
 

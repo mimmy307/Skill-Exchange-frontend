@@ -5,14 +5,20 @@ import { Link } from "react-router-dom";
 import MySkills from "../components/MySkills";
 import OutgoingRequests from "../components/OutgoingRequests";
 import IncomingRequests from "../components/IncomingRequests";
-import { Avatar, Text, Button, Paper, Group,Badge, Tabs } from '@mantine/core';
+import { Avatar, Text, Button, Paper, Group,Badge, Tabs, Modal } from '@mantine/core';
 import classes from "./UserDashboard.module.css"
+import EditProfile from "../components/EditProfile";
+import { useDisclosure } from "@mantine/hooks";
+import AddSkills from "../components/AddSkills";
 
 
 
 
 function UserDashboard (){
     const [dashUser, setDashUser] = useState({})
+    const [opened, { open, close }] = useDisclosure(false)
+    const [editProfileOpened, { open: openEditProfile, close: closeEditProfile }] = useDisclosure(false);
+    const [addSkillOpened, { open: openAddSkill, close: closeAddSkill }] = useDisclosure(false);
 
     const {user} = useContext(AuthContext)
 
@@ -55,17 +61,17 @@ function UserDashboard (){
                         </Badge>
                     </Group>
                    
-                    <Link to="/dashboard/editprofile" style={{ textDecoration: 'none' }}>
                         <Button 
                         variant="filled" 
                         color="#00E59B"
                         style={{ color: 'black' }} 
                         fullWidth 
                         mt="md"
-                        radius="md" >
+                        radius="md" 
+                        onClick={openEditProfile}
+                        >
                             Edit Profile
-                        </Button>
-                    </Link>   
+                        </Button>  
                 </Paper> 
             </div>
 
@@ -98,16 +104,15 @@ function UserDashboard (){
                     <div className={classes.mySkills}>
                         <Group justify="space-between">
                            <h2>My Skills</h2>
-                        <Link to="/dashboard/addskill">
                             <Button 
                                 variant="filled" 
                                 color="#00E59B" 
                                 size="sm" 
                                 radius="md"  
-                                style={{ color: 'black' }}>
+                                style={{ color: 'black' }}
+                                onClick={openAddSkill}>
                                 Add Skill
                             </Button>
-                        </Link> 
                         </Group>
                         
 
@@ -116,6 +121,24 @@ function UserDashboard (){
                     
                     </div> 
                 </div>
+
+                <Modal
+                    opened={editProfileOpened} 
+                    onClose={closeEditProfile} 
+                    withCloseButton={false}
+                    centered
+                    size="lg">
+                        <EditProfile  closeModal={closeEditProfile}/>
+                </Modal>
+
+                <Modal
+                    opened={addSkillOpened} 
+                    onClose={closeAddSkill} 
+                    withCloseButton={false}
+                    centered
+                    size="lg">
+                        <AddSkills  closeModal={closeAddSkill}/>
+                </Modal>
             
         </div>
     )

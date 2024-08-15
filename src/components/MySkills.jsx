@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context"
 import { SimpleGrid, Card, Image, Text, Modal, Group, Button } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import axios from "axios"
+import AddSkills from "./AddSkills"
 
 const API_URL = "http://localhost:5005"
 
