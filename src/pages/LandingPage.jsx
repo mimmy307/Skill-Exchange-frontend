@@ -1,4 +1,4 @@
-import CategorySection from "../components/CategorySection"
+import Footer from "../components/Footer"
 import Header from "../components/Header"
 
 
@@ -7,7 +7,7 @@ function LandingPage(){
     return(
         <div>
             <Header />
-            <CategorySection/>
+            <Footer/>
        </div>
        
     )

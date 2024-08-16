@@ -2,7 +2,7 @@ import { SimpleGrid, Card, Image, Text, Container } from '@mantine/core';
 import home from "../assets/Images/Categories/11.png"
 import creative from "../assets/Images/Categories/33.png"
 import tech from "../assets/Images/Categories/22.png"
-import classes from "../components/CategorySection.module.css"
+import classes from './CategorySection.module.css'
 
 const categories =[
     {

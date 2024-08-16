@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../context/auth.context"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import Search from "../components/Search"
 import { API_URL } from "../config"
+import { SimpleGrid, Card, Image, Text} from "@mantine/core"
+import classes from "./AllSkills.module.css"
+
 
 function AllSkills(){
     const [skills, setSkills] = useState([])
@@ -12,7 +14,6 @@ function AllSkills(){
     const getAllSkills = async ()=>{
         try{
             const response = await axios.get(`${API_URL}/api/skills`)
-            console.log("skills data", response.data)
             setSkills(response.data)
         } catch(err){
             console.log("couldn't fetch skills", err)
@@ -43,17 +44,26 @@ function AllSkills(){
     }
 
     return(
-        <div>
+        <div className={classes.container}>
             <Search searchHandler={searchHandler} />
-            {skills &&
-                skills.map((skill) =>(
-                    <Link to={`/skills/${skill._id}`} key={skill._id}>
-                    <div >
-                        <img src={skill.image} />
-                        <p>{skill.skillName}</p>
-                    </div>
-                    </Link>
-                )) }
+
+            <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" >
+                {skills &&
+                    skills.map((skill) =>(
+                        <Card key={skill._id} shadow="md" padding="md" radius="lg" withBorder className={classes.skillCard}>
+                            <Card.Section>
+                                <Image 
+                                    src={skill.image}
+                                    height={250}/>
+                            </Card.Section>
+                            <Link to={`/skills/${skill._id}`} style={{ textDecoration: 'none' }}>
+                                <Text fw={600} ta="center"  mt="sm" color="black">{skill.skillName}</Text> 
+                            </Link>
+                        </Card>
+                        
+                    )) }
+            </SimpleGrid>
+            
         </div>
     )
 

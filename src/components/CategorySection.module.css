@@ -4,7 +4,7 @@
 }
 
 .title {
-    color: var(--mantine-color-black);
+    color: blue;
     font-size: rem(50px);
     font-weight: 500;
     line-height: 1.1;

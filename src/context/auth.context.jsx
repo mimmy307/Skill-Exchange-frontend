@@ -34,12 +34,16 @@ function AuthProviderWrapper({children}){
       navigator("/login")
     }
 
+    const updateUser = (updatedUserData) => {
+        setUser(updatedUserData); 
+      };
+
     useEffect(()=>{
       authenticateUser()  
     }, [])
 
     return(
-        <AuthContext.Provider value={{isLoggedIn,isLoading, user, authenticateUser, logOutUser}}>
+        <AuthContext.Provider value={{isLoggedIn,isLoading, user, authenticateUser, logOutUser, updateUser}}>
             {children}
         </AuthContext.Provider>
     )

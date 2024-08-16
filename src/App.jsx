@@ -12,6 +12,9 @@ import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';
 import AllSkills from './pages/AllSkills';
 import { MantineProvider, createTheme} from '@mantine/core';
+import Footer from './components/Footer';
+import Homepage from './pages/Homepage';
+import AllUsers from './pages/AllUsers';
 
 const myColor= [
   '#e2fff7',
@@ -20,7 +23,6 @@ const myColor= [
   '#67ffcd',
   '#40febf',
   '#29ffb5',
-  '#18ffb0',
   '#00e39a',
   '#00c987',
   '#00ae72'
@@ -50,6 +52,8 @@ function App() {
       <Route path="/skills" element={<IsPrivate><AllSkills/></IsPrivate>} />
       <Route path="/signup" element={ <IsAnon> <SignupPage/> </IsAnon> }/>
       <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />
+      <Route path="/home" element={<IsPrivate><Homepage/></IsPrivate>} />
+      <Route path="/users" element={<IsPrivate><AllUsers/></IsPrivate>}/>
    </Routes>
 
     </div>

@@ -4,11 +4,14 @@ import axios from "axios"
 import { AuthContext } from "../context/auth.context"
 import { Link } from "react-router-dom"
 import { API_URL } from "../config"
+import classes from './SkillDetails.module.css'
+import { Paper, Avatar, Image, Text, Button, Badge, Title, Stack, Divider } from "@mantine/core"
 
 function SkillDetails(){
     const {skillId} = useParams()
     const [skill, setSkill] = useState({})
     const {user} = useContext(AuthContext)
+    const [isRequested, setIsRequested] = useState(false);
    
 
     const getSkill = async () =>{
@@ -37,6 +40,7 @@ function SkillDetails(){
         try{
             const response = await axios.post(`${API_URL}/api/skillRequest`, newRequest,
             {headers: { Authorization: `Bearer ${tokenFromStorage}` } })
+            setIsRequested(true)
             console.log("request succesfull", response.data)
         } catch(err){
             console.log("couldn't request skill", err)
@@ -44,27 +48,86 @@ function SkillDetails(){
     }
 
     return(
-        <div className="skill-details-container">
-            <div className="skill-details-info">
-                <h2>{skill.skillName}</h2>
-                <img src={skill.image} alt={skill.skillName}/>
-                <p>{skill.location}</p>
+        <div className={classes.container}>
+            <Paper radius="md" withBorder  className={classes.skillDetails}>
+            <Stack mt="md" >
+            <Title >{skill.skillName}</Title>
+            <Divider  />
+                <Image 
+                    src={skill.image} 
+                    alt={skill.skillName}
+                    radius="md"
+                    h={300}
+                    w="auto"
+                    fit="contain"
+                    /> 
+                <Badge color="#00E59B" variant="light">{skill.location}</Badge>
+                <Divider  />
                 <h3>Description</h3>
-                <p>{skill.description}</p>
-            </div>
+                <Text fw={500} color="dimmed">{skill.description}</Text>
+            </Stack>
+                
+            </Paper>
             
-            <div className="skill-user-container">
-                <div className="skill-token-request">
-                    <button>{skill.tokenRate} {skill.tokenRate > 1 ? 'Tokens' : 'Token'}</button>
-                    <button onClick={requestSkill}>Request</button>
+            <div  size="sm" className={classes.userContainer}>
+                <div>
+                    <Paper radius="md" withBorder p="lg"  className={classes.userDetails}>
+                        <Text fw={600}> Offered by:</Text>
+                        <Avatar
+                            src={skill.user && skill.user.profilePic}
+                            size={150}
+                            radius={120}
+                            mx="auto"
+                            mt="md"
+                        />
+                        <Text ta="center" fz="lg" fw={500} mt="md">
+                            {skill.user && skill.user.fullName}
+                        </Text>
+                        <Text ta="center" c="dimmed" fz="sm">
+                            {skill.user && skill.user.email}
+                        </Text>
+                        <Text ta="center" c="dimmed" fz="sm">
+                            {skill.user && skill.user.city}, {skill.user && skill.user.country}
+                        </Text>
+                        {skill.user && 
+                            <Link to={`/users/${skill.user._id}`} style={{ textDecoration: 'none' }}> 
+                                <Button 
+                                variant="filled" 
+                                color="#00E59B"
+                                style={{ color: 'black' }} 
+                                fullWidth 
+                                mt="md"
+                                radius="md" 
+                                >
+                                    View Profile
+                                </Button> 
+                            </Link> 
+                        }
+                         
+                    </Paper> 
                 </div>
 
-                <div className="skill-user-info">
-                    <img src={skill.user && skill.user.profilePic} />
-                    <h4>{skill.user && skill.user.fullName}</h4>
-                    <p>{skill.user && skill.user.city}, {skill.user && skill.user.country}</p>
-                    {skill.user && <Link to={`/users/${skill.user._id}`}> <p>View Profile</p></Link> }
-                </div>
+                <Paper withBorder p="lg" bg='white' className={classes.tokenRequest}  styles={{
+                root: {
+                    borderColor: '#00E59B', 
+                    borderWidth: 2,
+                },
+            }}>
+                    <Stack>
+                        <Text fw={500} ta="center"> {skill.tokenRate} {skill.tokenRate > 1 ? 'Tokens' : 'Token'}</Text>
+                        <Button 
+                            onClick={requestSkill}
+                            variant="filled" 
+                            color="#00E59B"
+                            style={{ color: 'black' }} 
+                            radius="md" 
+                            disabled={isRequested}
+                            >
+                            {isRequested ? "Requested" : "Request"}
+                        </Button>
+                    </Stack>
+                    
+                </Paper>
 
             </div>
         </div>
@@ -73,3 +136,4 @@ function SkillDetails(){
 }
 
 export default SkillDetails
+

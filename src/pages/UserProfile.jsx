@@ -5,7 +5,7 @@ import MySkills from "../components/MySkills";
 import Reviews from "../components/Reviews";
 import { useParams } from "react-router-dom";
 import classes from "./UserProfile.module.css"
-import { Avatar, Text, Button, Paper, Group,Badge } from '@mantine/core';
+import { Avatar, Text, Button, Paper, Group,Badge, Divider } from '@mantine/core';
 
 
 function UserProfile(){
@@ -37,7 +37,7 @@ function UserProfile(){
 
 
     return(
-        <div className={classes.container}>
+           <div className={classes.container}>
             <div key={userProfile._id}>
                 <Paper radius="md" withBorder p="lg" bg="var(--mantine-color-body)" className={classes.userInfo}>
                     <Avatar
@@ -59,26 +59,31 @@ function UserProfile(){
             </div>
     
 
-            <div className={classes.generalInfoContaine}r>
+            <div className={classes.generalInfoContainer}>
                 <div className="about-me-section"> 
                     <h3>Hey there! I'm {userProfile.fullName}</h3>
-                    <p>{userProfile.aboutMe}</p>
+                    <Divider size="sm"  />
+                    <Text mt="md">{userProfile.aboutMe}</Text>
                 </div>
+
 
                 <div className="my-skills-section">
-                    <h2>{userProfile.fullName}'s Skills</h2>
-                    <MySkills skills={mySkills} setSkills={setMySkills} />
+                    <h3>{userProfile.fullName}'s Skills</h3>
+                    <Divider size="sm"  />
+                    <br/>
+                    <MySkills skills={mySkills} setSkills={setMySkills} isDashboard={false} />
                 </div>
 
-                <div className="user-reviews-container">
-                    <h2>Reviews</h2>   
+                {/* <div className="user-reviews-container">
+                    <h3>Reviews</h3>   
                     <Reviews revieweeId={userProfile._id}/>
-                </div>
+                </div> */}
 
             </div>
               
             
-        </div>
+        </div> 
+        
     )
 
 

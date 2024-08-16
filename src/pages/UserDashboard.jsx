@@ -125,7 +125,7 @@ function UserDashboard (){
                     
 
                     <hr style={{ border: '1.5px solid #00E59B'}}/> 
-                    <MySkills skills={mySkills} setSkills={setMySkills}/>
+                    <MySkills skills={mySkills} setSkills={setMySkills} isDashboard={true}/>
                 
                 </div> 
             </div>

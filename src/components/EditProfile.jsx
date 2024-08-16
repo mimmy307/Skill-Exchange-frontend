@@ -6,7 +6,7 @@ import { Center, Group, Input, Stack, Textarea, Button} from "@mantine/core";
 import { API_URL } from "../config";
 
 function EditProfile({closeModal, setDashUser}){
-    const {user} = useContext(AuthContext)
+    const {user, updateUser} = useContext(AuthContext)
     const [fullName, setFullName] = useState("")
     const [email, setEmail] = useState("")
     const [city, setCity] = useState("")
@@ -58,6 +58,7 @@ function EditProfile({closeModal, setDashUser}){
                 headers: { Authorization: `Bearer ${tokenFromStorage}` } 
             })
             setDashUser(response.data);
+            updateUser(response.data);
             closeModal();
         }catch(err){console.log("error while updating profile", err)}
     }

@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+    gap: 50px;
+    background-color: rgb(237, 249, 248);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   
+}
+

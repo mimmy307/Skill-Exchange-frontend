@@ -35,7 +35,7 @@ function LoginPage() {
             console.log("Successfully logged in", data);
             localStorage.setItem("authToken", data.authToken);
             await authenticateUser();
-            nav("/dashboard"); 
+            nav("/home"); 
         } catch (error) {
             console.error(error);
             setPasswordError("Invalid password");

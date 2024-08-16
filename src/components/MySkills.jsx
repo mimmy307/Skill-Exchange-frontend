@@ -8,7 +8,7 @@ import axios from "axios"
 import AddSkills from "./AddSkills"
 import { API_URL } from "../config"
 
-function MySkills({ skills, setSkills }){
+function MySkills({ skills, setSkills, isDashboard }){
     const {user} = useContext(AuthContext)
     const [opened, {open,close}] = useDisclosure(false)
     const [selectedSkill, setSelectedSkill] = useState(null);
@@ -44,7 +44,8 @@ function MySkills({ skills, setSkills }){
                                     src={skill.image}
                                     height={250}
                                     /> 
-                                <Group 
+                                {isDashboard && (
+                                   <Group 
                                     position="right" 
                                     style={{
                                         position: 'absolute', 
@@ -59,7 +60,9 @@ function MySkills({ skills, setSkills }){
                                     radius="md">
                                         Delete
                                     </Button>
-                                </Group>
+                                </Group> 
+                                )}  
+                                
                             </Card.Section>
                             <Link to={`/skills/${skill._id}`} style={{ textDecoration: 'none' }}>
                                 <Text fw={600} ta="center"  mt="sm" color="black" >

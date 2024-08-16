@@ -19,12 +19,14 @@ function Navbar(){
 
     return(
         <nav className={classes.navbar}>
-            <img src={logo} alt="logo" className={classes.logo}/>
+           
 
             <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
 
             {!isLoggedIn && (
-                <div className={classes.loginSignupSection}>
+                <div className={classes.navInfo}>
+                    <img src={logo} alt="logo" className={classes.logo}/>
+                    <div className={classes.loginSignupSection}>
                     <Link to="/login">
                         <Button  
                             variant="outline" 
@@ -43,12 +45,23 @@ function Navbar(){
                             Sign Up
                         </Button>
                     </Link>
+                    </div>
                 </div>
+               
             )}
             
             {isLoggedIn && (
+                <div className={classes.navInfo}>
+               <Link to="/home"><img src={logo} alt="logo" className={classes.logo}/></Link>
                 <div className={classes.skillsProfileContainer}> 
-                    <Link to="/skills"><p>All Skills</p></Link>
+                    <Link to="/skills">
+                        <Button 
+                            variant="outline" 
+                            color="#00E59B"
+                         >
+                         All Skills
+                        </Button>
+                    </Link>
                     <Menu 
                         width={260}
                         position="bottom-end"
@@ -60,16 +73,16 @@ function Navbar(){
                         <Menu.Target>
                             <UnstyledButton className={cx(classes.user, { [classes.userActive]: userMenuOpened })}>
                                 <Group gap={7}>
-                                    <Avatar src={user.profilePic} radius="xl" size={40} />
+                                    <Avatar src={user.profilePic} radius="xl" size={40}/>
                                     <Text fw={500} size="sm" lh={1} mr={3} color="white" >
                                         {user.fullName}
                                     </Text>
-                                    <IconChevronDown style={{ width: rem(12), height: rem(12) }} stroke={1.5}/>
+                                    <IconChevronDown color= "white" style={{ width: rem(12), height: rem(12) }} stroke={1.5}/>
                                 </Group>
                             </UnstyledButton>
                         </Menu.Target>
                         <Menu.Dropdown>
-                            <Link to={`/users/${user._id}`}>
+                            <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }}>
                             <Menu.Item
                                 leftSection={
                                     <IconUserCircle 
@@ -82,7 +95,7 @@ function Navbar(){
                             My Profile
                             </Menu.Item>
                             </Link>
-                            <Link to={`/dashboard`}>
+                            <Link to={`/dashboard`} style={{ textDecoration: 'none' }}>
                               <Menu.Item
                                 leftSection={
                                     <IconLayoutDashboard 
@@ -118,6 +131,7 @@ function Navbar(){
 
                     </Menu>
                     
+                </div>
                 </div>
                
             )}
