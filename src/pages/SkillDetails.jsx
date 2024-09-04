@@ -28,6 +28,11 @@ function SkillDetails(){
     }, [skillId])
 
     const requestSkill = async () =>{
+        if (user.tokenBalance < skill.tokenRate){
+            alert("Insufficient tokens");
+            return;
+        }
+
         const newRequest = {
             requester: user._id, 
             offerer: skill.user._id, 
@@ -40,6 +45,7 @@ function SkillDetails(){
         try{
             const response = await axios.post(`${API_URL}/api/skillRequest`, newRequest,
             {headers: { Authorization: `Bearer ${tokenFromStorage}` } })
+
             setIsRequested(true)
             console.log("request succesfull", response.data)
         } catch(err){

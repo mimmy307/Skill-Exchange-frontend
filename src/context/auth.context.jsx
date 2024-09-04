@@ -34,9 +34,17 @@ function AuthProviderWrapper({children}){
       navigator("/login")
     }
 
-    const updateUser = (updatedUserData) => {
-        setUser(updatedUserData); 
-      };
+    const updateUser = async (updatedUserData) => {
+        try {
+            const tokenFromStorage = localStorage.getItem("authToken");
+            const { data } = await axios.put(`${API_URL}/users/${updatedUserData._id}`, updatedUserData, {
+                headers: { Authorization: `Bearer ${tokenFromStorage}` }
+            });
+            setUser(data); 
+        } catch (error) {
+            console.error("Error updating user data:", error);
+        }
+    };
 
     useEffect(()=>{
       authenticateUser()  

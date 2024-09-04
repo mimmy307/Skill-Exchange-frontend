@@ -46,7 +46,6 @@ function App() {
     <Routes>
       <Route path="/" element={ <LandingPage/> } />
       <Route path="/dashboard" element={ <IsPrivate><UserDashboard/></IsPrivate> }/>
-      <Route path="/dashboard/addskill" element={ <IsPrivate> <AddSkills/> </IsPrivate> } />
       <Route path="/skills/:skillId" element={ <IsPrivate> <SkillDetails/> </IsPrivate> } />
       <Route path="/users/:userId" element={<IsPrivate><UserProfile/></IsPrivate>} />
       <Route path="/skills" element={<IsPrivate><AllSkills/></IsPrivate>} />

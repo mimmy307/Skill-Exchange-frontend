@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/auth.context"
 import axios from "axios"
-import { Row, Col, Card } from 'react-bootstrap';
 import "../components/Requests.css"
 import { API_URL } from "../config";
 import { Avatar, Group, Table, Text, Select } from "@mantine/core";
@@ -22,6 +21,7 @@ function IncomingRequests(){
         }
     }
 
+
     useEffect(()=>{
         getIncomingRequests()
     }, [user._id])
@@ -29,11 +29,12 @@ function IncomingRequests(){
     const handleStatusChange = async (requestId, newStatus) =>{
         const tokenFromStorage = localStorage.getItem("authToken")
         try{ 
-            const response = await axios.put(`${API_URL}/api/skillRequest/${requestId}`,
+            const response = await axios.put(`${API_URL}/api/skillRequest/${requestId}/accept`,
                 { status: newStatus },
                 { headers: { Authorization: `Bearer ${tokenFromStorage}` } }
               );
-           getIncomingRequests();
+
+            getIncomingRequests();
         }catch (err) {
             console.log("Couldn't update status", err);
           }
@@ -60,7 +61,7 @@ function IncomingRequests(){
 
             <Table.Td>
                 <Select
-                data={['Pending', 'Accepted', 'Completed', 'Rejected']}
+                data={['pending', 'accepted', 'completed', 'rejected']}
                 defaultValue={request.status}
                 onChange={(value) => handleStatusChange(request._id, value)}
                 />
