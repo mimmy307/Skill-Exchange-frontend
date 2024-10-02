@@ -11,6 +11,8 @@ function AllSkills(){
     const [skills, setSkills] = useState([])
     const [query, setQuery] = useState("")
 
+    console.log("API URL:", API_URL);
+
     const getAllSkills = async ()=>{
         try{
             const response = await axios.get(`${API_URL}/api/skills`)
