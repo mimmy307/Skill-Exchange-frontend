@@ -1,11 +1,16 @@
 .navbar{
     background-color: black;
     height: 70px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .navInfo{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .logo{
@@ -46,4 +51,13 @@
   
   .userActive {
     background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+  }
+
+  @media(max-width: 760px){
+    
+    .logo {
+      width: 120px; 
+      margin: 0;
+      }
+
   }

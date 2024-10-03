@@ -1,6 +1,5 @@
 import classes from "./Homepage.module.css"
-import cx from 'clsx';
-import { Title, Text, Container, Button, Overlay } from '@mantine/core';
+import { Title, Text, Container} from '@mantine/core';
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 import PreviewContainer from "../components/PreviewContainer";

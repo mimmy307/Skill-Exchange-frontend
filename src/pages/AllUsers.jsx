@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import Search from "../components/Search"
 import { API_URL } from "../config"
 import { SimpleGrid, Card, Image, Text} from "@mantine/core"
 import classes from "./AllSkills.module.css"

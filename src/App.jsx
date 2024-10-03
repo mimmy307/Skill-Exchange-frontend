@@ -7,12 +7,10 @@ import IsPrivate from "./components/IsPrivate"
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import UserDashboard from './pages/UserDashboard';
-import AddSkills from './components/AddSkills';
 import SkillDetails from './pages/SkillDetails';
 import UserProfile from './pages/UserProfile';
 import AllSkills from './pages/AllSkills';
 import { MantineProvider, createTheme} from '@mantine/core';
-import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import AllUsers from './pages/AllUsers';
 
