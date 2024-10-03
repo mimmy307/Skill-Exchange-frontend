@@ -3,7 +3,8 @@
     height: 70px;
     display: flex;
     align-items: center;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    
 }
 
 .navInfo{

@@ -1,7 +1,8 @@
 .landing-page-container{
 
-        flex: 1; /* This will make the landing page take all available space */
+        flex: 1; 
         display: flex;
         flex-direction: column;
+        
 
 }
