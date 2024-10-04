@@ -49,14 +49,16 @@ function AllSkills(){
         <div className={classes.container}>
             <Search searchHandler={searchHandler} />
 
-            <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" >
+            <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" >
                 {skills &&
                     skills.map((skill) =>(
                         <Card key={skill._id} shadow="md" padding="md" radius="lg" withBorder className={classes.skillCard}>
                             <Card.Section>
                                 <Image 
                                     src={skill.image}
-                                    height={250}/>
+                                    height={250}
+                                    className={classes.allSkillsImage}
+                                    />
                             </Card.Section>
                             <Link to={`/skills/${skill._id}`} style={{ textDecoration: 'none' }}>
                                 <Text fw={600} ta="center"  mt="sm" color="black">{skill.skillName}</Text> 

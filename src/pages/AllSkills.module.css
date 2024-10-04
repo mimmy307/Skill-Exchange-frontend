@@ -8,3 +8,14 @@
 .skillCard:hover{
     transform: scale(1.05);
 }
+
+@media(max-width: 768px){
+    .allSkillsImage{
+    height: 150px;
+    }
+
+    .allUsersImage{
+    height: 150px
+    }
+}
+

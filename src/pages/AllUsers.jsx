@@ -28,7 +28,7 @@ function AllUsers(){
     return(
             <div className={classes.container}>
                 
-                <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
+                <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
                     {users &&
                         users.map((user) =>(
                             <Card 
@@ -44,6 +44,7 @@ function AllUsers(){
                                         src={user.profilePic}
                                         height={250}
                                         fit="contain"
+                                        className={classes.allUsersImage}
                                         />
                                 </Card.Section>
                                 <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }}>

@@ -44,7 +44,7 @@ function UserDashboard (){
     return(
         <div className={classes.container}>
             <div>
-            <Paper radius="md" withBorder p="lg" bg="var(--mantine-color-body)" className={classes.userInfo}>
+                <Paper radius="md" withBorder p="lg" bg="var(--mantine-color-body)" className={classes.userInfo}>
                     <Avatar
                         src={dashUser.profilePic}
                         size={180}
