@@ -7,12 +7,23 @@
     padding: 30px;
     border-radius:20px;
     gap: 50px;
-    background-color: rgba(225, 235, 233, 0.948)
+    background-color: rgba(225, 235, 233, 0.948);
+
+    @media(max-width: 768px){
+        flex-direction: column;
+        margin: 15px;
+        padding: 20px;
+        gap: 20px;
+    }
 }
 
 .userInfo{
     width: 300px;
     text-align: center;
+
+    @media(max-width: 768px){
+        width: 100%;
+    }
 }
 
 .generalInfoContainer{
@@ -24,4 +35,8 @@
     border: 1px rgb(222, 220, 220) solid;
     padding: 30px;
     border-radius: 10px;
+
+    @media(max-width: 768px){
+        width: 100%;
+    }
 }

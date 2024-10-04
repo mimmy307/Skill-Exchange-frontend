@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import service from "../services/file-upload.service"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 import { SimpleGrid, Card, Image, Text, Modal, Group, Button } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import axios from "axios"
-import AddSkills from "./AddSkills"
 import { API_URL } from "../config"
 
 function MySkills({ skills, setSkills, isDashboard }){
