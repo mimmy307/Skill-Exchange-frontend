@@ -8,3 +8,16 @@
    
 }
 
+.previewCardImage{
+
+    @media(max-width: 768px){
+        height: 150px;
+    }
+}
+
+.previewCardName{
+    @media(max-width: 768px){
+        height: 80px;
+        align-content: center;
+    }
+}

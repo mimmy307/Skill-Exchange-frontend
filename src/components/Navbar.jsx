@@ -54,14 +54,14 @@ function Navbar(){
                 <div className={classes.navInfo}>
                <Link to="/home"><img src={logo} alt="logo" className={classes.logo}/></Link>
                 <div className={classes.skillsProfileContainer}> 
-                    <Link to="/skills">
+                    {/* <Link to="/skills">
                         <Button 
                             variant="outline" 
                             color="#00E59B"
                          >
                          All Skills
                         </Button>
-                    </Link>
+                    </Link> */}
                     <Menu 
                         width={260}
                         position="bottom-end"

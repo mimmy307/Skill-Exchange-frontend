@@ -9,7 +9,7 @@
     background-position: center;
   
     @media (max-width: $mantine-breakpoint-xs) {
-      padding-top: rem(80px);
+      padding-top: rem(50px);
       padding-bottom: rem(50px);
     }
   }
@@ -33,8 +33,7 @@
       var(--mantine-font-family);
   
     @media (max-width: $mantine-breakpoint-xs) {
-      font-size: rem(28px);
-      text-align: left;
+      text-align: center;
     }
   }
   
@@ -45,7 +44,6 @@
   
     @media (max-width: $mantine-breakpoint-xs) {
       font-size: var(--mantine-font-size-md);
-      text-align: left;
     }
   }
 

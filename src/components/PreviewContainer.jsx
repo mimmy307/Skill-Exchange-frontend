@@ -58,7 +58,7 @@ function PreviewContainer(){
                     </Link>
             </Group>
             
-            <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
+            <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" className={classes.previewSkillsGrid}>
                 {displayedSkills &&
                     displayedSkills.map((skill) =>(
                         <Card 
@@ -72,9 +72,11 @@ function PreviewContainer(){
                             <Card.Section >
                                 <Image 
                                     src={skill.image}
-                                    height={250}/>
+                                    height={250}
+                                    className={classes.previewCardImage}
+                                    />
                             </Card.Section>
-                            <Link to={`/skills/${skill._id}`} style={{ textDecoration: 'none' }}>
+                            <Link to={`/skills/${skill._id}`} style={{ textDecoration: 'none' }} className={classes.previewCardName}>
                                 <Text fw={600} ta="center"  mt="sm" color="black">{skill.skillName}</Text> 
                             </Link>
                         </Card>
@@ -97,7 +99,7 @@ function PreviewContainer(){
                     </Link>
             </Group>
             
-            <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
+            <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
                 {displayedUsers &&
                     displayedUsers.map((user) =>(
                         <Card 
@@ -111,6 +113,7 @@ function PreviewContainer(){
                                 <Image 
                                     src={user.profilePic}
                                     fit="contain"
+                                    className={classes.previewCardImage}
                                     />
                             </Card.Section>
                             <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }}>

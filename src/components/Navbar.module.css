@@ -45,9 +45,6 @@
       background-color: rgb(48, 47, 47);
     }
   
-    @media (max-width: $mantine-breakpoint-xs) {
-      display: none;
-    }
   }
   
   .userActive {
