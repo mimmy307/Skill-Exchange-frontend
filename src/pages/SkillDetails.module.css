@@ -6,7 +6,7 @@
     background-color: rgba(225, 235, 233, 0.948);
     /* background-color: #9fdbc9; */
     justify-content: center;
-    height:100vh;
+    height:100%;
 
     @media(max-width:768px){
         flex-direction: column;
