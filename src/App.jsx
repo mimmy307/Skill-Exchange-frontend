@@ -37,7 +37,7 @@ function App() {
   
 
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
     <div className='App'>
     <Navbar />
 
