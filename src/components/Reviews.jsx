@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context"
 import "../components/Reviews.css"
 import AddReview from "./AddReview"
 import { API_URL } from "../config"
+import { Avatar, Button, Group, Text } from "@mantine/core"
 
 function Reviews({revieweeId}){
     const [reviews, setReviews] = useState([])
@@ -40,29 +41,34 @@ function Reviews({revieweeId}){
       };
 
     return(
-        <div>
-            {reviews.length === 0 ? (<p>No reviews available</p>) :(
+        <div style={{ marginTop: "30px" }}>
+            {reviews.length === 0 ? (
+                <Text>No reviews available</Text>
+                ) :(
                 reviews.map((review)=>(
-                    <div className="user-review-card" >
-                        <div className="reviewer-info">
-                            <img src={review.reviewer.profilePic} alt="reviewer image"/>
-                            <p>{review.reviewer.fullName}</p>
-                        </div>
-                        <div className="review-text">
-                            <div className="rating-star">
-                            {ratingStars(review.rating)} 
-                            </div> 
+                    <div key={review._id} style={{ marginBottom: "40px" }}>
+                        <Group>
+                            <Avatar src={review.reviewer.profilePic} alt="reviewer image" radius="xl" />
+                            <div>
+                                <Text size="sm">{review.reviewer.fullName}</Text>
+                                <div>{ratingStars(review.rating)} </div> 
+                            </div>   
+                        </Group>
+                        <Text pl={54} pt="sm" size="sm" >    
                             <p>{review.comment}</p>              
-                        </div>
-                        
+                        </Text>     
                     </div>
 
                 )))
             }
 
-            <button onClick={() => setShowReviewForm(!showReviewForm)}>
-            {showReviewForm ? "Cancel" : "Leave a review"}
-            </button>
+            <Button
+            variant="filled" 
+            color="#00E59B"
+            style={{color:"black"}}
+            onClick={() => setShowReviewForm(!showReviewForm)}>
+                {showReviewForm ? "Cancel" : "Leave a review"}
+            </Button>
             {showReviewForm && <AddReview revieweeId={revieweeId} />}
         </div>
     )

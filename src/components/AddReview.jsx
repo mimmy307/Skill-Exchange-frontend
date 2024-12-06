@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../context/auth.context"
 import axios from "axios"
 import { API_URL } from "../config"
+import { Button, Group, NumberInput, Stack, Textarea, Title } from "@mantine/core"
 
 
 function AddReview({revieweeId}){
@@ -30,32 +31,35 @@ function AddReview({revieweeId}){
     }
 
     return(
-        <div className="reviews-container">
-            <h2>Add Review</h2>
+        <div style={{  margin: "20px auto", padding: "20px", border: "1px solid #ddd", borderRadius: "8px" }}>
+            <Title order={3}  mb="md">Add Review</Title>
             <form onSubmit={handleSubmit}>
-                <div> 
-                    <label>Rate</label>
-                    <input 
-                        type="number"
-                        name="rating"
+                <Stack spacing="md"> 
+                    <NumberInput
+                        label="Rate (1-5)"
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
-                        min="1"
-                        max="5"
+                        min={1}
+                        max={5}
+                        required
                     />
-                </div>
-                
-                <div>
-                    <label>Your review</label>
-                    <textarea 
-                        name="comment"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                    <Textarea
+                    label="Your Review"
+                    placeholder="Write your review here"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    minRows={4}
+                    required
                     />
-                </div>
-                <button type="submit">Submit</button>
-
-            </form>
+                    <Group>
+                        <Button 
+                        variant="filled" 
+                        color="#00E59B"
+                        style={{color:"black"}}
+                        type="submit">Submit</Button>
+                    </Group>
+                </Stack>        
+          </form>
 
         </div>
     )

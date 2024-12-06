@@ -5,7 +5,7 @@ import MySkills from "../components/MySkills";
 import Reviews from "../components/Reviews";
 import { useParams } from "react-router-dom";
 import classes from "./UserProfile.module.css"
-import { Avatar, Text, Button, Paper, Group,Badge, Divider } from '@mantine/core';
+import { Avatar, Text, Paper, Divider } from '@mantine/core';
 
 
 function UserProfile(){
@@ -74,10 +74,11 @@ function UserProfile(){
                     <MySkills skills={mySkills} setSkills={setMySkills} isDashboard={false} />
                 </div>
 
-                {/* <div className="user-reviews-container">
-                    <h3>Reviews</h3>   
+                <div className="user-reviews-container">
+                    <h3>Reviews</h3> 
+                    <Divider size="sm"  />  
                     <Reviews revieweeId={userProfile._id}/>
-                </div> */}
+                </div>
 
             </div>
               
