@@ -43,7 +43,7 @@ function Reviews({revieweeId}){
     return(
         <div style={{ marginTop: "30px" }}>
             {reviews.length === 0 ? (
-                <Text>No reviews available</Text>
+                <Text mb={30}>No reviews available</Text>
                 ) :(
                 reviews.map((review)=>(
                     <div key={review._id} style={{ marginBottom: "40px" }}>
