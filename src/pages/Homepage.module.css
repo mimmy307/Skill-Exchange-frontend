@@ -2,11 +2,15 @@
 
 .wrapper {
     position: relative;
-    padding-top: rem(80px);
+    padding-top: rem(60px);
     padding-bottom: rem(80px);
-    background: linear-gradient(135deg,#13e8b6,#4bc4c6, #badddf  );
+    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.131), rgba(24, 238, 181, 0.399)), url("../assets/Images/h1.png"); */
+    background: linear-gradient(rgba(0, 0, 0, 0.131), rgba(24, 255, 193, 0.228)), url("../assets/Images/h1.png");
+    position: relative;
+    /* background-image: url("../assets/Images/h3.png"); */
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat; 
   
     @media (max-width: $mantine-breakpoint-xs) {
       padding-top: rem(50px);
@@ -21,11 +25,10 @@
   
   .title {
     font-weight: 800;
-    font-size: rem(40px);
     letter-spacing: rem(-1px);
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
-    color: var(--mantine-color-white);
+    color: white;
     margin-bottom: var(--mantine-spacing-xs);
     text-align: center;
     font-family:
@@ -37,10 +40,13 @@
     }
   }
   
+  .userName{
+    color: #00e59b
+  }
 
   .description {
-    color: var(--mantine-color-gray-0);
     text-align: center;
+    
   
     @media (max-width: $mantine-breakpoint-xs) {
       font-size: var(--mantine-font-size-md);

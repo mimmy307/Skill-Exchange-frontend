@@ -73,6 +73,7 @@ function PreviewContainer(){
                                 <Image 
                                     src={skill.image}
                                     height={250}
+
                                     className={classes.previewCardImage}
                                     />
                             </Card.Section>

@@ -1,11 +1,14 @@
 .container{
     display: flex;
     flex-direction: column;
-    padding: 30px 50px;
+    padding: 30px 150px;
     gap: 50px;
     background-color: rgb(237, 249, 248);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   
+
+    @media(max-width: 768px){
+        padding: 30px 50px;
+    }
 }
 
 .previewCardImage{
@@ -21,3 +24,17 @@
         align-content: center;
     }
 }
+
+.skillCard,
+.userCard {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.skillCard:hover,
+.userCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+
