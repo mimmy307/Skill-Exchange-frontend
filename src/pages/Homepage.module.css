@@ -4,10 +4,8 @@
     position: relative;
     padding-top: rem(60px);
     padding-bottom: rem(80px);
-    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.131), rgba(24, 238, 181, 0.399)), url("../assets/Images/h1.png"); */
-    background: linear-gradient(rgba(0, 0, 0, 0.131), rgba(24, 255, 193, 0.228)), url("../assets/Images/h1.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.131), rgba(11, 249, 185, 0.249)), url("../assets/Images/h1.png");
     position: relative;
-    /* background-image: url("../assets/Images/h3.png"); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; 
@@ -15,6 +13,8 @@
     @media (max-width: $mantine-breakpoint-xs) {
       padding-top: rem(50px);
       padding-bottom: rem(50px);
+      padding-left: rem(20px);
+      padding-right: rem(20px);
     }
   }
   
@@ -37,6 +37,7 @@
   
     @media (max-width: $mantine-breakpoint-xs) {
       text-align: center;
+      font-size: 20px;
     }
   }
   
@@ -49,7 +50,8 @@
     
   
     @media (max-width: $mantine-breakpoint-xs) {
-      font-size: var(--mantine-font-size-md);
+      font-size: var(--mantine-font-size-s);
+      display: none; 
     }
   }
 

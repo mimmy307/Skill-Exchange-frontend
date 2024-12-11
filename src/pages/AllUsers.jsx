@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { API_URL } from "../config"
-import { SimpleGrid, Card, Image, Text} from "@mantine/core"
+import { SimpleGrid, Text, Paper, Avatar, Button} from "@mantine/core"
 import classes from "./AllSkills.module.css"
+
 
 
 function AllUsers(){
@@ -31,28 +32,37 @@ function AllUsers(){
                 <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
                     {users &&
                         users.map((user) =>(
-                            <Card 
-                            mt="md"
-                            key={user._id} 
-                            shadow="md" 
-                            padding="md" 
-                            radius="md" 
+                                <Paper radius="lg" withBorder p="lg" key={user._id} className={classes.userCard}>
+                                    <Avatar
+                                    src={user.profilePic}
+                                    size={140}
+                                    radius={120}
+                                    mx="auto"
+                                    />
+                                
+                                    <Text ta="center" fz="lg" fw={600} mt="md" color="black">
+                                        {user.fullName}
+                                    </Text>
+                                    <Text ta="center" c="dimmed" fz="sm">
+                                        {user.city}, {user.country}
+                                    </Text>
+                                    <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }}> 
+                                        <Button 
+                                            variant="outline" 
+                                            color="#00E59B"
+                                            style={{ color: 'black' }} 
+                                            fullWidth 
+                                            mt="md"
+                                            radius="md" 
+                                            >
+                                                View Profile
+                                        </Button> 
+                                    </Link> 
+                                </Paper>
+                
                             
-                            className={classes.userCard}>
-                                <Card.Section >
-                                    <Image 
-                                        src={user.profilePic}
-                                        height={250}
-                                        fit="contain"
-                                        className={classes.allUsersImage}
-                                        />
-                                </Card.Section>
-                                <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }}>
-                                    <Text fw={600} ta="center"  mt="sm" color="black">{user.fullName}</Text> 
-                                </Link>
-                            </Card>
-                            
-                        )) }
+                        )) 
+                    }
                 </SimpleGrid>
                 </div>
                 

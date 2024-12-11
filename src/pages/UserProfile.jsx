@@ -39,7 +39,7 @@ function UserProfile(){
     return(
            <div className={classes.container}>
             <div key={userProfile._id}>
-                <Paper radius="md" withBorder p="lg" bg="var(--mantine-color-body)" className={classes.userInfo}>
+                <Paper radius="md" withBorder p="lg"  className={classes.userInfo}>
                     <Avatar
                         src={userProfile.profilePic}
                         size={180}
@@ -61,14 +61,14 @@ function UserProfile(){
 
             <div className={classes.generalInfoContainer}>
                 <div className="about-me-section"> 
-                    <h3>Hey there! I'm {userProfile.fullName}</h3>
+                    <h3>Hey there! I&apos;m {userProfile.fullName}</h3>
                     <Divider size="sm"  />
                     <Text mt="md">{userProfile.aboutMe}</Text>
                 </div>
 
 
                 <div className="my-skills-section">
-                    <h3>{userProfile.fullName}'s Skills</h3>
+                    <h3>{userProfile.fullName}&apos;s Skills</h3>
                     <Divider size="sm"  />
                     <br/>
                     <MySkills skills={mySkills} setSkills={setMySkills} isDashboard={false} />

@@ -20,6 +20,7 @@
 .userInfo{
     width: 300px;
     text-align: center;
+    background: linear-gradient(to bottom, #ffffff 96%, #00E59B 96%);
 
     @media(max-width: 768px){
         width: 100%;

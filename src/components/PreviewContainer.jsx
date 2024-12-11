@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { API_URL } from "../config"
-import { SimpleGrid, Card, Image, Text, Group, Button} from "@mantine/core"
+import { SimpleGrid, Card, Image, Text, Group, Button, Paper, Avatar} from "@mantine/core"
 import classes from './PreviewContainer.module.css'
 
 function PreviewContainer(){
@@ -53,7 +53,7 @@ function PreviewContainer(){
                             color="#00E59B"
                             style={{color:"black"}}
                          >
-                         View all skills
+                         All Skills
                         </Button>
                     </Link>
             </Group>
@@ -95,34 +95,35 @@ function PreviewContainer(){
                             color="#00E59B"
                             style={{color:"black"}}
                          >
-                         View all Users
+                         All Users
                         </Button>
                     </Link>
             </Group>
             
-            <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" className={classes.grid}>
+            <SimpleGrid cols={{ base: 2, sm: 2, lg: 4 }} spacing="lg" className={classes.grid} mb={40}>
                 {displayedUsers &&
                     displayedUsers.map((user) =>(
-                        <Card 
-                        mt="md"
-                        key={user._id} 
-                        shadow="md" 
-                        padding="md" 
-                        radius="md" 
-                        className={classes.userCard}>
-                            <Card.Section >
-                                <Image 
-                                    src={user.profilePic}
-                                    fit="contain"
-                                    className={classes.previewCardImage}
-                                    />
-                            </Card.Section>
-                            <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }}>
-                                <Text fw={600} ta="center"  mt="sm" color="black">{user.fullName}</Text> 
-                            </Link>
-                        </Card>
+
+                        <Link to={`/users/${user._id}`} style={{ textDecoration: 'none' }} key={user._id}>
+                            <Paper radius="md" withBorder p="lg"  className={classes.userCard} mt="md">
+                            <Avatar
+                            src={user.profilePic}
+                            size={100}
+                            radius={120}
+                            mx="auto"
+                            className={classes.avatar}
+                            />
                         
-                    )) }
+                            <Text ta="center" fz="lg" fw={600} mt="md" color="black">
+                                {user.fullName}
+                            </Text>
+                            <Text ta="center" c="dimmed" fz="sm">
+                                {user.city}, {user.country}
+                             </Text>
+                             
+                        </Paper> 
+                        </Link>
+                        )) }
             </SimpleGrid>
             </div>
             
