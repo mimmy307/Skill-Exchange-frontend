@@ -38,7 +38,7 @@ function AddReview({revieweeId}){
                     <NumberInput
                         label="Rate (1-5)"
                         value={rating}
-                        onChange={(e) => setRating(e.target.value)}
+                        onChange={(value) => setRating(value)}
                         min={1}
                         max={5}
                         required
