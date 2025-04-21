@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/auth.context"
 import axios from "axios"
-import Card from 'react-bootstrap/Card';
 import "../components/Requests.css"
 import { API_URL } from "../config";
 import { Table, Group, Avatar, Text, Badge } from "@mantine/core";
